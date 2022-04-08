@@ -18,7 +18,21 @@
         :key="i"
         :task="task"
       />
-        {{ $store.state.tasks}}
+    </div>
+
+    <div class="create-new">
+      <div>
+        <h1>
+          data:
+        </h1>
+
+        <p>
+         {{ $store.state.tasks}}
+        </p>
+      </div>
+      <button>
+        Send data to api
+      </button>
     </div>
   </main>
 </template>
