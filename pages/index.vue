@@ -59,6 +59,7 @@ export default {
           title: this.title,
           type: this.type,
           value: this.value,
+          _rowVariant: "danger",
         });
         this.title = "";
         this.type = "";

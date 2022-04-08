@@ -10,7 +10,7 @@ export const mutations = {
             title: task.title,
             type: task.type,
             value: task.value,
-            done: false
+            _rowVariant: "danger",
         })
     },
     SET_API_TASKS(state, apiTasks) {
@@ -24,7 +24,7 @@ export const mutations = {
     },
     EDIT_TODO(state, task) {
         state.tasks.filter((o) => {
-            o.content = task.content;
+            o.title = task.title;
         });
     }
 };
