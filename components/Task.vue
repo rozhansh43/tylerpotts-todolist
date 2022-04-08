@@ -1,11 +1,22 @@
 <template>
   <div :class="`task ${task.done ? 'is-complete' : ''}`">
     <div v-if="!editing" class="content">
-      {{ task.content }}
+      <p>
+        title:  {{ task.title }}
+      </p>
+
+      <p>
+        type: {{ task.type }}
+      </p>
+
+      <p>
+       value:  {{ task.value }}
+      </p>
     </div>
 
     <div v-else>
-      <input v-bind:value="todoText" @change="todoTextChange" type="text" />
+      <input v-model="todoText" type="text" />
+      {{todoText}}
     </div>
 
     <div class="buttons">
@@ -19,8 +30,6 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-
 export default {
   props: ["task"],
   data() {
@@ -30,7 +39,7 @@ export default {
     };
   },
   methods: {
-    toggleDone() {
+   toggleDone() {
       this.$store.commit("TOGGLE_TASK", this.task);
     },
     removeTask() {
@@ -40,19 +49,6 @@ export default {
       this.editing = this.editing == true ? false : true;
       this.todoText = this.task.content;
       this.$store.commit("EDIT_TODO", this.task);
-    },
-    ...mapActions(["updateTodo", "changeCompleted"]),
-    todoTextChange(e) {
-      this.todoText = e.target.value;
-    },
-    updateTodoI(task) {
-      this.editing = this.editing == true ? false : true;
-      if (this.editing) {
-        this.todoText = task.content;
-        this.updateTodo(task);
-      } else {
-        task.content = this.todoText;
-      }
     },
   },
 };

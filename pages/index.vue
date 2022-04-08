@@ -3,7 +3,12 @@
     <h1>task board</h1>
 
     <div class="create-new">
-      <input type="text" v-model="newTask" @keypress.enter="addTask">
+      <input type="text" v-model="title" @keypress.enter="addTask">
+
+      <input type="text" v-model="type" @keypress.enter="addTask">
+
+      <input type="text" v-model="value" @keypress.enter="addTask">
+      
       <button @click="addTask">add task</button>
     </div>
 
@@ -23,14 +28,22 @@ export default {
   name: 'IndexPage',
   data () {
     return {
-      newTask: ""
+      title: "",
+      type: "",
+      value: "",
     }
   },
   methods: {
     addTask() {
-      if(this.newTask) {
-        this.$store.commit('ADD_TASK', this.newTask)
-        this.newTask = ""
+      if(this.title, this.type,this.value) {
+        this.$store.commit('ADD_TASK', {
+          title: this.title,
+          type: this.type,
+          value: this.value
+        })
+        this.title = ""
+        this.type= ""
+        this.value = ""
       }
     }
   }
