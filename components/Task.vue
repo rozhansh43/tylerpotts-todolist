@@ -12,10 +12,15 @@
       <input v-model="todoText" type="text" />
       {{ todoText }}
     </div>
+    
+    <editTask
+      v-if="modal == true"
+      :task="task" 
+    />
 
     <div class="buttons">
       <button @click="toggleDone">{{ task.done ? "Undo" : "Done" }}</button>
-      <button @click="editTask()" class="btn btn-primary mx-2">
+      <button @click="openModal()" class="btn btn-primary mx-2">
         {{ editing ? "Update" : "Edit" }}
       </button>
       <button @click="removeTask" class="delete">delete</button>
@@ -29,10 +34,14 @@ export default {
   data() {
     return {
       editing: false,
+      modal:false,
       todoText: "",
     };
   },
   methods: {
+    openModal() {
+      this.modal =  !this.modal
+    },
     toggleDone() {
       this.$store.commit("TOGGLE_TASK", this.task);
     },

@@ -17,14 +17,18 @@ export const mutations = {
         state.tasks = apiTasks;
     },
     REMOVE_TASK(state, task) {
-        state.tasks = state.tasks.filter((o) => o.id !== task.id);
+        state.tasks = state.tasks.filter((o) => {
+            o.id !== task.id
+        });
+        console.log('task.id');
+        console.log(task.id);
     },
     TOGGLE_TASK(state, task) {
         task.done = !task.done;
     },
     EDIT_TODO(state, task) {
         state.tasks.filter((o) => {
-            o.title = task.title;
+            o.id = task.id;
         });
     }
 };
