@@ -48,11 +48,11 @@ export default {
     removeTask() {
       this.$store.commit("REMOVE_TASK", this.task);
     },
-    editTask() {
-      this.editing = this.editing == true ? false : true;
-      this.todoText = this.task.content;
-      this.$store.commit("EDIT_TODO", this.task);
-    },
+    // editTask() {
+    //   this.editing = this.editing == true ? false : true;
+    //   this.todoText = this.task.content;
+    //   this.$store.commit("EDIT_TODO", this.task);
+    // },
   },
 };
 </script>

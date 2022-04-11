@@ -20,7 +20,10 @@ export default {
   methods: { 
     editToDo() {
       console.log("hhh");
-      this.$store.commit("EDIT_TODO", this.inputText);
+      this.$store.commit("EDIT_TODO", {
+          newValue: this.inputText,
+          task: this.task
+        });
     },
   }
 };

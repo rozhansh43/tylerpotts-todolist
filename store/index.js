@@ -26,9 +26,9 @@ export const mutations = {
     TOGGLE_TASK(state, task) {
         task.done = !task.done;
     },
-    EDIT_TODO(state, task) {
-        state.tasks.filter((o) => {
-            o.id = task.id;
-        });
+    EDIT_TODO(state, {newValue , task }) {
+        console.log('task');
+        console.log(task);
+        task.title = newValue
     }
 };
