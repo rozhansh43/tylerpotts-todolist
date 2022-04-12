@@ -2,6 +2,8 @@
   <main>
     <h1>task board</h1>
 
+    {{ newTasks }}
+
     <div class="create-new">
       <input type="text" v-model="title" @keypress.enter="addTask" />
       <br />
@@ -15,7 +17,12 @@
     </div>
 
     <div class="tasks">
-      <Task v-for="(task, i) in $store.state.tasks" :key="i" :task="task" />
+      <Task
+        @update="update"
+        v-for="(task, i) in $store.state.tasks"
+        :key="i"
+        :task="task"
+      />
     </div>
 
     <div class="create-new">
@@ -38,6 +45,7 @@ export default {
     return {
       title: "",
       type: "",
+      newTasks: [],
       value: "",
       apiTask: [
         {
@@ -50,7 +58,13 @@ export default {
         { id: "104487746", title: "hhhhhhh", type: "uuuuuuuu", done: false },
         { id: "855403452", title: "mmmmm", done: false },
       ],
+      type: null,
     };
+  },
+  watch: {
+    type: function (value) {
+      console.log(value);
+    },
   },
   methods: {
     addTask() {
@@ -66,12 +80,21 @@ export default {
         this.value = "";
       }
     },
+    update() {
+      this.newTasks = this.apiTask.filter((x) => x.type !== "delete");
+    },
   },
   mounted() {
     this.$store.commit("SET_API_TASKS", this.apiTask);
     this.apiTask.forEach((record) => {
-      record._rowVariant = "success"
-    })
+      record._rowVariant = "success";
+      this.type = record.type
+    });
+    // this.apiTask.forEach((task) => {
+    //   if (task.type != "delete") {
+    //     this.newTasks.push(task);
+    //   }
+    // });
   },
 };
 </script>

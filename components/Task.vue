@@ -47,6 +47,7 @@ export default {
     },
     removeTask() {
       this.$store.commit("REMOVE_TASK", this.task);
+      this.$emit('update')
     },
     // editTask() {
     //   this.editing = this.editing == true ? false : true;

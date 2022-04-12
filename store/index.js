@@ -20,7 +20,6 @@ export const mutations = {
         console.log('task in module');
         console.log(task);
         task.type = "delete";
-        // state.tasks = filter(state.tasks,{ type: "delete" });
     },
     TOGGLE_TASK(state, task) {
         task.done = !task.done;
