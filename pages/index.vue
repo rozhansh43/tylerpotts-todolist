@@ -69,6 +69,9 @@ export default {
   },
   mounted() {
     this.$store.commit("SET_API_TASKS", this.apiTask);
+    this.apiTask.forEach((record) => {
+      record._rowVariant = "success"
+    })
   },
 };
 </script>
